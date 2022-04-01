@@ -62,10 +62,10 @@
 			<!-- CHECK FOR UNLISTED CHORES -->
 			<c:forEach var="chore" items="${chores}">
 				<c:if test="${chore.getListed() == false}">
-					<c:set var="addChoreCount" value="1"/>
+					<c:set var="addChoreCount" value="${addChoreCount = addChoreCount +1 }"/>
 				</c:if>           						
     		</c:forEach>
-    		
+
 			<!-- IF/ELSE -->
     		<c:choose>
     		
@@ -73,7 +73,7 @@
 					<div class="form-group">   					
 		            	<form action="/choreList/add" method="post" >
 			          	  <input type="hidden" name="_method" value="put"/>					        	
-		         			<label style="color: linen">Available Chores:</label>
+		         			<label style="color: linen">Available Chores: ${addChoreCount}</label>
 		            		<select name="selectChore" class="form-control">
 			         			<c:forEach var="chore" items="${chores}">
 		 							<c:if test="${chore.getListed() == false}">
@@ -125,7 +125,7 @@
 			<!-- CHECK FOR UNLISTED REWARDS -->
 			<c:forEach var="reward" items="${rewards}">
 				<c:if test="${reward.getListed() == false}">
-					<c:set var="addRewardCount" value="1"/>
+					<c:set var="addRewardCount" value="${addRewardCount = addRewardCount +1 }"/>
 				</c:if>           						
     		</c:forEach>
 			
@@ -136,7 +136,7 @@
 					<div class="form-group">   											
 	            		<form action="/rewardList/add" method="post" >
 		            	<input type="hidden" name="_method" value="put"/>			        	
-			         		<label style="color: linen">Add Reward to list:</label>
+			         		<label style="color: linen">Available Rewards: ${addRewardCount}</label>
 			            	<select name="selectReward" class="form-control">
 				         		<c:forEach var="reward" items="${rewards}">
 			 						<c:if test="${reward.getListed() == false}">
